@@ -1,0 +1,55 @@
+
+
+services:
+  #spring-boot-app:
+   # build:
+    #  context: .
+     # dockerfile: Dockerfile
+    #ports:
+     # - "8080:8080"
+    #depends_on:
+     # - rabbitmq
+     # - mysql
+    #networks:
+     # - app-network
+    #environment:
+      #SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/sistema_venda
+     # SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3307/sistema_venda
+      #SPRING_DATASOURCE_USERNAME: root
+      #SPRING_DATASOURCE_PASSWORD: root
+     # SPRING_RABBITMQ_HOST: rabbitmq
+     # SPRING_RABBITMQ_PORT: 5672
+     # SPRING_RABBITMQ_USERNAME: admin
+     # SPRING_RABBITMQ_PASSWORD: admin
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq-container
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - app-network
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root  # Senha do usuário root
+      MYSQL_DATABASE: sistema_venda  # Banco de dados a ser criado
+    networks:
+      - app-network
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persistência de dados
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
