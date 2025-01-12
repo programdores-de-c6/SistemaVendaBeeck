@@ -7,6 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "presenca")
@@ -16,7 +18,11 @@ public class Presenca implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@ManyToOne
+	@JoinColumn(name = "funcionario_fk")
 	private Funcionario funcionario;
+	@ManyToOne
+	@JoinColumn(name = "funcSistema_fk")
 	private Funcionario funcSistema;
 	@Enumerated(EnumType.STRING)
 	private StatusPresenca statusPresenca;

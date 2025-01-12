@@ -27,8 +27,8 @@ public class Transacao implements Serializable {
 	@JoinColumn(name = "cliente_fk")
 	private Cliente cliente;
 	@ManyToOne
-	@JoinColumn(name = "funcionario_fk")
-	private Funcionario funcionario;
+	@JoinColumn(name = "caixa_fk")
+	private Caixa caixa;
 	@Enumerated(EnumType.STRING)
 	private MetodoPagamento metodoPagamento;
 	@DecimalMin("0.01")
@@ -59,12 +59,13 @@ public class Transacao implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+
+	public Caixa getCaixa() {
+		return caixa;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setCaixa(Caixa caixa) {
+		this.caixa = caixa;
 	}
 
 	public MetodoPagamento getMetodoPagamento() {

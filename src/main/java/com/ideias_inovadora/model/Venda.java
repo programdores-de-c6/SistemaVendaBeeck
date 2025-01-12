@@ -23,7 +23,9 @@ public class Venda implements Serializable {
 	private String numeroFactura;
 	private String nomeclienteInformal;
 	private LocalDateTime datavenda;
-
+	@ManyToOne
+	@JoinColumn(name = "transacao_fk")
+	private Transacao transacao;
 	public Venda() {
 		super();
 	}
@@ -69,6 +71,14 @@ public class Venda implements Serializable {
 
 	public void setDatavenda(LocalDateTime datavenda) {
 		this.datavenda = datavenda;
+	}
+
+	public Transacao getTransacao() {
+		return transacao;
+	}
+
+	public void setTransacao(Transacao transacao) {
+		this.transacao = transacao;
 	}
 
 }

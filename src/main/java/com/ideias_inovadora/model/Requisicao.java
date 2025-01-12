@@ -9,6 +9,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 
@@ -32,6 +34,9 @@ public class Requisicao implements Serializable {
 	private LocalDateTime dataRequisao;
 	private int duracao;
 	private LocalDate dataReceber;
+	@ManyToOne
+	@JoinColumn(name = "transacao_fk")
+	private Transacao transacao;
 
 	public Requisicao() {
 		super();
@@ -106,6 +111,22 @@ public class Requisicao implements Serializable {
 
 	public void setDataReceber(LocalDate dataReceber) {
 		this.dataReceber = dataReceber;
+	}
+
+	public Transacao getTransacao() {
+		return transacao;
+	}
+
+	public void setTransacao(Transacao transacao) {
+		this.transacao = transacao;
+	}
+
+	public StatusRequisicao getStatusRequisicao() {
+		return statusRequisicao;
+	}
+
+	public void setStatusRequisicao(StatusRequisicao statusRequisicao) {
+		this.statusRequisicao = statusRequisicao;
 	}
 
 }

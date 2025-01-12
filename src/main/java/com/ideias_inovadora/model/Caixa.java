@@ -22,8 +22,8 @@ public class Caixa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
-	@JoinColumn(name = "loja_fk")
-	private Loja loja;
+	@JoinColumn(name = "funcionario_fk")
+	private Funcionario funcionario;
 	private Funcionario funcionarioAbri;
 	private Funcionario funcionarioFech;
 	private BigDecimal valorInicial;
@@ -40,11 +40,12 @@ public class Caixa implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Loja getLoja() {
-		return loja;
+	
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
-	public void setLoja(Loja loja) {
-		this.loja = loja;
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 	public Funcionario getFuncionarioAbri() {
 		return funcionarioAbri;
