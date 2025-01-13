@@ -13,6 +13,6 @@ public interface LocalidadeRepository  extends JpaRepository<Localidade, Long>{
 	   // Buscar todos os distritos de um país
     List<Localidade> findByDistritoId(Long distritoId);
     // Buscar distrito por nome dentro de um país
-    Optional<Distrito> findByNomeAndDistritoId(String nome, Long distritoId);
+    Optional<Localidade> findByNomeAndDistritoId(String nome, Long distritoId);
 
 }
