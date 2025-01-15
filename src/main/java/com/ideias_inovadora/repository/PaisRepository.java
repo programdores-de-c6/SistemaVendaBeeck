@@ -6,7 +6,7 @@ import org.apache.commons.logging.Log;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.ideias_inovadora.model.Pais;
 
-public interface PaisRepository extends JpaRepository<Pais, Log> {
+public interface PaisRepository extends JpaRepository<Pais, Long> {
 
 	// Buscar por nome (exato)
 	Optional<Pais> findByNome(String nome);
