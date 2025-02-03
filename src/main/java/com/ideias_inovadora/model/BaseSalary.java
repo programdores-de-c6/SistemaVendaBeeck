@@ -11,8 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "salarioBase")
-public class SalarioBase implements Serializable {
+@Table(name = "baseSalary")
+public class BaseSalary implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -23,7 +23,7 @@ public class SalarioBase implements Serializable {
 	private LocalDateTime datacricao;
 	private LocalDateTime dataActualizacao;
 
-	public SalarioBase() {
+	public BaseSalary() {
 		super();
 	}
 

@@ -19,7 +19,7 @@ public class Venda implements Serializable {
 	private long id;
 	@ManyToOne
 	@JoinColumn(name = "serie_fk")
-	private Serie serie;
+	private Series series;
 	private String numeroFactura;
 	private String nomeclienteInformal;
 	private LocalDateTime datavenda;
@@ -40,12 +40,12 @@ public class Venda implements Serializable {
 
 	
 
-	public Serie getSerie() {
-		return serie;
+	public Series getSerie() {
+		return series;
 	}
 
-	public void setSerie(Serie serie) {
-		this.serie = serie;
+	public void setSerie(Series series) {
+		this.series = series;
 	}
 
 

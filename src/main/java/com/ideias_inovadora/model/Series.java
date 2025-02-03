@@ -12,8 +12,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "serie")
-public class Serie implements Serializable {
+@Table(name = "series")
+public class Series implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Serie implements Serializable {
 	private LocalDateTime datacriacao;
 	private LocalDateTime dataAutorizacao;
 
-	public Serie() {
+	public Series() {
 		super();
 	}
 

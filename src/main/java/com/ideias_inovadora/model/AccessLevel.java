@@ -9,15 +9,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 @Entity
-@Table(name = "nivelacesso")
-public class NivelAcesso implements Serializable {
+@Table(name = "accessLevel")
+public class AccessLevel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private long id;
 	@Size(min = 1, max = 100, message = "Tamanho de caracteres excedido.")
 	   private String nome;
-	public NivelAcesso() {
+	public AccessLevel() {
 		super();
 	}
 	public long getId() {

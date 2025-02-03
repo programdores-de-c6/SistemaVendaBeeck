@@ -18,7 +18,7 @@ public class Funcionario extends Pessoa {
 	private Shop shop;
 	@ManyToOne
 	@JoinColumn(name = "nivelAcesso_fk")
-	private NivelAcesso nivelAcesso;
+	private AccessLevel accessLevel;
 	@ManyToOne
 	@JoinColumn(name = "location_fk")
 	private Location location;
@@ -26,7 +26,7 @@ public class Funcionario extends Pessoa {
 	private Status status;
 	@ManyToOne
 	@JoinColumn(name = "salarioBase_fk")
-	private SalarioBase salarioBase;
+	private BaseSalary baseSalary;
 	public Funcionario() {
 		super();
 	}
@@ -45,15 +45,19 @@ public class Funcionario extends Pessoa {
 
 
 
-	public NivelAcesso getNivelAcesso() {
-		return nivelAcesso;
-	}
-
-	public void setNivelAcesso(NivelAcesso nivelAcesso) {
-		this.nivelAcesso = nivelAcesso;
-	}
-
 	
+
+	public AccessLevel getAccessLevel() {
+		return accessLevel;
+	}
+
+
+
+	public void setAccessLevel(AccessLevel accessLevel) {
+		this.accessLevel = accessLevel;
+	}
+
+
 
 	public Location getLocation() {
 		return location;
@@ -71,12 +75,17 @@ public class Funcionario extends Pessoa {
 		this.status = status;
 	}
 
-	public SalarioBase getSalarioBase() {
-		return salarioBase;
+
+
+	public BaseSalary getBaseSalary() {
+		return baseSalary;
 	}
 
-	public void setSalarioBase(SalarioBase salarioBase) {
-		this.salarioBase = salarioBase;
+
+
+	public void setBaseSalary(BaseSalary baseSalary) {
+		this.baseSalary = baseSalary;
 	}
+
 
 }
