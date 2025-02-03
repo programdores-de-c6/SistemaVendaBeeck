@@ -14,14 +14,14 @@ public class Funcionario extends Pessoa {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name = "loja_fk")
-	private Loja loja;
+	@JoinColumn(name = "shop_fk")
+	private Shop shop;
 	@ManyToOne
 	@JoinColumn(name = "nivelAcesso_fk")
 	private NivelAcesso nivelAcesso;
 	@ManyToOne
-	@JoinColumn(name = "localidade_fk")
-	private Localidade localidade;
+	@JoinColumn(name = "location_fk")
+	private Location location;
 	@Enumerated(EnumType.STRING)
 	private Status status;
 	@ManyToOne
@@ -31,13 +31,19 @@ public class Funcionario extends Pessoa {
 		super();
 	}
 
-	public Loja getLoja() {
-		return loja;
+	
+
+	public Shop getShop() {
+		return shop;
 	}
 
-	public void setLoja(Loja loja) {
-		this.loja = loja;
+
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
+
+
 
 	public NivelAcesso getNivelAcesso() {
 		return nivelAcesso;
@@ -47,12 +53,14 @@ public class Funcionario extends Pessoa {
 		this.nivelAcesso = nivelAcesso;
 	}
 
-	public Localidade getLocalidade() {
-		return localidade;
+	
+
+	public Location getLocation() {
+		return location;
 	}
 
-	public void setLocalidade(Localidade localidade) {
-		this.localidade = localidade;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	public Status getStatus() {

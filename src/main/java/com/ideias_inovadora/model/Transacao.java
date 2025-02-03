@@ -36,8 +36,8 @@ public class Transacao implements Serializable {
 	private LocalDateTime datatrasacao;
 	@Enumerated(EnumType.STRING)
 	private TipoTrasacao tipoTrasacao;
-	@JoinColumn(name = "loja_fk")
-	private Loja loja;
+	@JoinColumn(name = "shop_fk")
+	private Shop shop;
 
 	public Transacao() {
 		super();
@@ -100,12 +100,14 @@ public class Transacao implements Serializable {
 		this.tipoTrasacao = tipoTrasacao;
 	}
 
-	public Loja getLoja() {
-		return loja;
+	public Shop getShop() {
+		return shop;
 	}
 
-	public void setLoja(Loja loja) {
-		this.loja = loja;
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
+
+	
 
 }

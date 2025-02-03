@@ -32,6 +32,19 @@ public class Pais implements Serializable {
 	public Pais() {
 		super();
 	}
+	
+	
+	public Pais(
+			@NotBlank(message = "Verifica o nome da localidade ") @Size(min = 1, max = 100, message = "Tamanho de caracteres excedido.") String nome,
+			@Size(min = 1, max = 20, message = "Tamanho de caracteres excedido.") String sigla,
+			LocalDateTime dataCriacao) {
+		super();
+		this.nome = nome;
+		this.sigla = sigla;
+		this.dataCriacao = dataCriacao;
+	}
+
+
 	public long getId() {
 		return id;
 	}

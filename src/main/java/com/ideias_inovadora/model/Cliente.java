@@ -14,7 +14,7 @@ public class Cliente extends Pessoa {
 	private String codigocliente;
 	@ManyToOne
 	@JoinColumn(name = "localidade_fk")
-	private Localidade localidade;
+	private Location location;
 	
 	public Cliente() {
 		super();
@@ -33,12 +33,13 @@ public class Cliente extends Pessoa {
 		this.codigocliente = codigocliente;
 	}
 
-	public Localidade getLocalidade() {
-		return localidade;
+	public Location getLocation() {
+		return location;
 	}
 
-	public void setLocalidade(Localidade localidade) {
-		this.localidade = localidade;
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
+	
 }

@@ -22,8 +22,8 @@ public class Despesa implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
-	@JoinColumn(name = "loja_fk")
-	private Loja loja;
+	@JoinColumn(name = "shop_fk")
+	private Shop shop;
 	@Enumerated(EnumType.STRING)
 	private CategoriaDespesa categoriadespes;
 	private String descricao;
@@ -47,12 +47,14 @@ public class Despesa implements Serializable {
 		this.id = id;
 	}
 
-	public Loja getLoja() {
-		return loja;
-	}
 	
-	public void setLoja(Loja loja) {
-		this.loja = loja;
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 
 	public CategoriaDespesa getCategoriadespes() {

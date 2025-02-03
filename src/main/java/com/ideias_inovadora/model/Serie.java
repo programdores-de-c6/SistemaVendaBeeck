@@ -23,8 +23,8 @@ public class Serie implements Serializable {
 	private String serie;
 	private String numeroAutorizacao;
 	@ManyToOne
-	@JoinColumn(name = "loja_fk")
-	private Loja loja;
+	@JoinColumn(name = "shop_fk")
+	private Shop shop;
 	@ManyToOne
 	@JoinColumn(name = "funcionario_fk")
 	private Funcionario funcionario;
@@ -75,12 +75,22 @@ public class Serie implements Serializable {
 		this.numeroAutorizacao = numeroAutorizacao;
 	}
 
-	public Loja getLoja() {
-		return loja;
+	
+
+	public Shop getShop() {
+		return shop;
 	}
 
-	public void setLoja(Loja loja) {
-		this.loja = loja;
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	public LocalDateTime getDatacriacao() {

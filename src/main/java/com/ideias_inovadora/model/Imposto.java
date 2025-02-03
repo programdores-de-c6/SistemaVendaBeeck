@@ -22,8 +22,8 @@ public class Imposto implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
 	@ManyToOne
-	@JoinColumn(name = "loja_fk")
-    private Loja loja;
+	@JoinColumn(name = "shop_fk")
+    private Shop shop;
 	@Enumerated(EnumType.STRING)
 	private TipoImposto tipoImposto;
      private BigDecimal baseCalculo;
@@ -37,11 +37,12 @@ public class Imposto implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Loja getLoja() {
-		return loja;
+	
+	public Shop getShop() {
+		return shop;
 	}
-	public void setLoja(Loja loja) {
-		this.loja = loja;
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 	public TipoImposto getTipoImposto() {
 		return tipoImposto;

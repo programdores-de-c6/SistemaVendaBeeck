@@ -37,6 +37,19 @@ public class Distrito implements Serializable {
 		super();
 	}
 
+	
+	public Distrito(
+			@NotBlank(message = "Erro no campo nome") @Size(min = 1, max = 100, message = "Tamanho de caracteres excedido.") String nome,
+			@Size(min = 1, max = 20, message = "Tamanho de caracteres excedido.") String sigla, Pais pais,
+			LocalDateTime datacriacao) {
+		super();
+		this.nome = nome;
+		this.sigla = sigla;
+		this.pais = pais;
+		this.datacriacao = datacriacao;
+	}
+
+
 	public long getId() {
 		return id;
 	}

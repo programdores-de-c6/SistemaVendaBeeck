@@ -34,8 +34,8 @@ public class Produto implements Serializable {
 	@JoinColumn(name = "categoria_fk")
 	private Categoria categoria;
 	@ManyToOne
-	@JoinColumn(name = "loja_fk")
-	private Loja loja;
+	@JoinColumn(name = "shop_fk")
+	private Shop shop;
 	@ManyToOne
 	@JoinColumn(name = "fornecedor_fk")
 	private Fornecedor fornecedor;
@@ -94,12 +94,13 @@ public class Produto implements Serializable {
 		this.categoria = categoria;
 	}
 
-	public Loja getLoja() {
-		return loja;
+	
+	public Shop getShop() {
+		return shop;
 	}
 
-	public void setLoja(Loja loja) {
-		this.loja = loja;
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 
 	public Fornecedor getFornecedor() {

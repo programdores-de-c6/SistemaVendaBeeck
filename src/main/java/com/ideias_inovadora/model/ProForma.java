@@ -28,8 +28,8 @@ public class ProForma implements Serializable {
 	@JoinColumn(name = "funcionario_fk")
 	private Funcionario funcionario;
 	@ManyToOne
-	@JoinColumn(name = "loja_fk")
-	private Loja loja;
+	@JoinColumn(name = "shop_fk")
+	private Shop shop;
 	@DecimalMin("0.01")
 	private BigDecimal totalGeral;
 	private String numeroproforma;
@@ -63,15 +63,17 @@ public class ProForma implements Serializable {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	public Loja getLoja() {
-		return loja;
-	}
-
-	public void setLoja(Loja loja) {
-		this.loja = loja;
-	}
+	
 
 	
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+
 	public BigDecimal getTotalGeral() {
 		return totalGeral;
 	}
