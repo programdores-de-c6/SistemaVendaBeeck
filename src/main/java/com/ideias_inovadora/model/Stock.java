@@ -1,6 +1,10 @@
 package com.ideias_inovadora.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ideias_inovadora.config.STNCurrencySerializer;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,14 +23,20 @@ public class Stock implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private int quantidade;
+    private int quantidadeMinima;
+	@JsonSerialize(using = STNCurrencySerializer.class)
+	private BigDecimal precoUnitario;
 	@ManyToOne
-	@JoinColumn(name = "produto_fk")
-	private Produto produto;
-
+	@JoinColumn(name = "product_fk")
+	private Product product;
+  
+	@ManyToOne
+	@JoinColumn(name = "shop_fk")
+	private Shop shop;
 	public Stock() {
 		super();
 	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -43,12 +53,37 @@ public class Stock implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+
+	public int getQuantidadeMinima() {
+		return quantidadeMinima;
+	}
+
+	public void setQuantidadeMinima(int quantidadeMinima) {
+		this.quantidadeMinima = quantidadeMinima;
+	}
+
+	public BigDecimal getPrecoUnitario() {
+		return precoUnitario;
+	}
+
+	public void setPrecoUnitario(BigDecimal precoUnitario) {
+		this.precoUnitario = precoUnitario;
+	}
+
 
 }

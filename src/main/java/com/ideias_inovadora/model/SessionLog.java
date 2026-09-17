@@ -13,19 +13,19 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "login")
-public class Login implements Serializable {
+public class SessionLog implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
-    @JoinColumn(name = "utilizador_fk")
-    private Funcionario utilizador;
+    @JoinColumn(name = "employee_fk")
+    private Employee employee;
     private LocalDateTime loginTime;
     private LocalDateTime logoutTime;
     private Boolean logado;
-	public Login() {
+	public SessionLog() {
 		super();
 	}
 	public long getId() {
@@ -34,11 +34,12 @@ public class Login implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Funcionario getUtilizador() {
-		return utilizador;
+	
+	public Employee getEmployee() {
+		return employee;
 	}
-	public void setUtilizador(Funcionario utilizador) {
-		this.utilizador = utilizador;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	public LocalDateTime getLoginTime() {
 		return loginTime;

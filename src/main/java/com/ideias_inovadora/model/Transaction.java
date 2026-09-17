@@ -14,10 +14,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Entity
 @Table(name = "trasacao")
-public class Transacao implements Serializable {
+public class Transaction  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -25,21 +26,33 @@ public class Transacao implements Serializable {
 	private long id;
 	@ManyToOne
 	@JoinColumn(name = "cliente_fk")
-	private Cliente cliente;
+	private Customer  customer;
 	@ManyToOne
-	@JoinColumn(name = "caixa_fk")
-	private Caixa caixa;
+	@JoinColumn(name = "box_fk")
+	private Box box;
 	@Enumerated(EnumType.STRING)
-	private MetodoPagamento metodoPagamento;
+	private PaymentMethod paymentMethod;
 	@DecimalMin("0.01")
 	private BigDecimal totalGeral;
+	@DecimalMin("0.00")
+	private BigDecimal valorRecebido;
+	@DecimalMin("0.00")
+	@PositiveOrZero(message = "O valor não pode ser negativo")
+	private BigDecimal troco;
 	private LocalDateTime datatrasacao;
 	@Enumerated(EnumType.STRING)
-	private TipoTrasacao tipoTrasacao;
+	private TransactionType  transactionType;
+	@ManyToOne 
 	@JoinColumn(name = "shop_fk")
 	private Shop shop;
+	private BigDecimal discountAmount; // O valor/percentagem informado
+	@Enumerated(EnumType.STRING)
+	private DiscountType discountType; // PERCENTAGE ou FIXED
+	private BigDecimal discountValue;  // O valor real subtraído em Dobras (para relatórios)
+	private BigDecimal subTotal;
+	private BigDecimal totalImposto;
 
-	public Transacao() {
+	public Transaction () {
 		super();
 	}
 
@@ -51,29 +64,30 @@ public class Transacao implements Serializable {
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
-
-	public Caixa getCaixa() {
-		return caixa;
+	public Box getBox() {
+		return box;
 	}
 
-	public void setCaixa(Caixa caixa) {
-		this.caixa = caixa;
+	public void setBox(Box box) {
+		this.box = box;
 	}
 
-	public MetodoPagamento getMetodoPagamento() {
-		return metodoPagamento;
+	
+	public PaymentMethod getPaymentMethod() {
+		return paymentMethod;
 	}
 
-	public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
-		this.metodoPagamento = metodoPagamento;
+	public void setPaymentMethod(PaymentMethod paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
 	public BigDecimal getTotalGeral() {
@@ -92,20 +106,76 @@ public class Transacao implements Serializable {
 		this.datatrasacao = datatrasacao;
 	}
 
-	public TipoTrasacao getTipoTrasacao() {
-		return tipoTrasacao;
-	}
-
-	public void setTipoTrasacao(TipoTrasacao tipoTrasacao) {
-		this.tipoTrasacao = tipoTrasacao;
-	}
-
 	public Shop getShop() {
 		return shop;
 	}
 
 	public void setShop(Shop shop) {
 		this.shop = shop;
+	}
+
+	public synchronized TransactionType getTransactionType() {
+		return transactionType;
+	}
+
+	public synchronized void setTransactionType(TransactionType transactionType) {
+		this.transactionType = transactionType;
+	}
+
+	public BigDecimal getDiscountAmount() {
+		return discountAmount;
+	}
+
+	public void setDiscountAmount(BigDecimal discountAmount) {
+		this.discountAmount = discountAmount;
+	}
+
+	public DiscountType getDiscountType() {
+		return discountType;
+	}
+
+	public void setDiscountType(DiscountType discountType) {
+		this.discountType = discountType;
+	}
+
+	public BigDecimal getDiscountValue() {
+		return discountValue;
+	}
+
+	public void setDiscountValue(BigDecimal discountValue) {
+		this.discountValue = discountValue;
+	}
+
+	public BigDecimal getValorRecebido() {
+		return valorRecebido;
+	}
+
+	public void setValorRecebido(BigDecimal valorRecebido) {
+		this.valorRecebido = valorRecebido;
+	}
+
+	public BigDecimal getTroco() {
+		return troco;
+	}
+
+	public void setTroco(BigDecimal troco) {
+		this.troco = troco;
+	}
+
+	public BigDecimal getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(BigDecimal subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	public BigDecimal getTotalImposto() {
+		return totalImposto;
+	}
+
+	public void setTotalImposto(BigDecimal totalImposto) {
+		this.totalImposto = totalImposto;
 	}
 
 	

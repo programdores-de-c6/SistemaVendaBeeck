@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ideias_inovadora.config.STNCurrencySerializer;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,34 +19,43 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table
-public class Produto implements Serializable {
+@Table(name = "product")
+public class Product implements Serializable {// Produto
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Size(min = 1, max = 50)
+	 @Column(unique = true, nullable = false)
 	private String codigobarra;
 	@Size(min = 1, max = 100, message = "Tamanho de caracteres excedido.")
 	private String nome;
-	@Size(min = 1, max = 150, message = "Tamanho de caracteres excedido.")
+	@Size( max = 150, message = "Tamanho de caracteres excedido.")
 	private String descricao;
-	@DecimalMin("0.01")
-	private BigDecimal precoUnitario;
+
+	@Column(name = "controla_stock", nullable = false)
+	private boolean controlaStock = true; 
+
 	@ManyToOne
-	@JoinColumn(name = "categoria_fk")
-	private Categoria categoria;
+	@JoinColumn(name = "category_fk")
+	private Category category;
 	@ManyToOne
-	@JoinColumn(name = "shop_fk")
-	private Shop shop;
+	@JoinColumn(name = "tax_fk")
+	private Tax tax;
 	@ManyToOne
-	@JoinColumn(name = "fornecedor_fk")
-	private Fornecedor fornecedor;
+	@JoinColumn(name = "supplier_fk")
+	private Supplier supplier;
+	@ManyToOne
+	@JoinColumn(name = "employee_fk")
+	private Employee employee;
+	@Column(updatable = false)
 	private LocalDateTime dataCriacao;
 	private LocalDateTime dataAtualizacao;
-
-	public Produto() {
+	@ManyToOne	
+	@JoinColumn(name = "file_fk")
+	private Files files;
+	public Product() {
 		super();
 	}
 
@@ -78,37 +91,28 @@ public class Produto implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public BigDecimal getPrecoUnitario() {
-		return precoUnitario;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setPrecoUnitario(BigDecimal precoUnitario) {
-		this.precoUnitario = precoUnitario;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
-	
-	public Shop getShop() {
-		return shop;
+	public Supplier getSupplier() {
+		return supplier;
 	}
 
-	public void setShop(Shop shop) {
-		this.shop = shop;
-	}
-
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
 	}
 
 	public LocalDateTime getDataCriacao() {
@@ -125,6 +129,30 @@ public class Produto implements Serializable {
 
 	public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public Tax getTax() {
+		return tax;
+	}
+
+	public void setTax(Tax tax) {
+		this.tax = tax;
+	}
+
+	public Files getFiles() {
+		return files;
+	}
+
+	public void setFiles(Files files) {
+		this.files = files;
+	}
+
+	public boolean isControlaStock() {
+		return controlaStock;
+	}
+
+	public void setControlaStock(boolean controlaStock) {
+		this.controlaStock = controlaStock;
 	}
 
 }

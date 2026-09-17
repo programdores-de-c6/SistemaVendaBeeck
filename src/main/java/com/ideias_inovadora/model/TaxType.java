@@ -1,11 +1,11 @@
 package com.ideias_inovadora.model;
 
-public enum TipoImposto {
+public enum TaxType  { // TipoImposto
 	IVA("IVA"), SEGURAÇA_SOCIAL("SEGURAÇA_SOCIAL"), IRS("IRS"), OUTROS("OUTROS");
 
 	private String descricao;
 
-	TipoImposto(String descricao) {
+	TaxType (String descricao) {
 		this.descricao = descricao;
 	}
 

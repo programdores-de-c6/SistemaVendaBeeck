@@ -14,8 +14,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "distrito")
-public class Distrito implements Serializable {
+@Table(name = "district")
+public class District implements Serializable {//Distrito
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,27 +27,32 @@ public class Distrito implements Serializable {
 	@Size(min = 1, max = 20, message = "Tamanho de caracteres excedido.")
 	private String sigla;
 	@ManyToOne
-	@JoinColumn(name = "pais_fk")
-	private Pais pais;
+	@JoinColumn(name = "country_fk")
+	private Country  country;
 	@Column(updatable = false)
 	private LocalDateTime datacriacao;
 	private LocalDateTime dataAtualizacao;
 
-	public Distrito() {
+	public District() {
 		super();
 	}
 
-	
-	public Distrito(
+	public District(
 			@NotBlank(message = "Erro no campo nome") @Size(min = 1, max = 100, message = "Tamanho de caracteres excedido.") String nome,
-			@Size(min = 1, max = 20, message = "Tamanho de caracteres excedido.") String sigla, Pais pais,
+			@Size(min = 1, max = 20, message = "Tamanho de caracteres excedido.") String sigla, Country country,
 			LocalDateTime datacriacao) {
 		super();
 		this.nome = nome;
 		this.sigla = sigla;
-		this.pais = pais;
+		this.country = country;
 		this.datacriacao = datacriacao;
 	}
+
+
+
+
+
+
 
 
 	public long getId() {
@@ -74,13 +79,22 @@ public class Distrito implements Serializable {
 		this.sigla = sigla;
 	}
 
-	public Pais getPais() {
-		return pais;
+
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setPais(Pais pais) {
-		this.pais = pais;
+
+
+
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
+
+
+
+
 
 	public LocalDateTime getDatacriacao() {
 		return datacriacao;

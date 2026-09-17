@@ -1,36 +1,19 @@
 package com.ideias_inovadora.model;
 
-import java.io.Serializable;
+public enum AccessLevel {
+	ROLE_ADMIN ("ROLE_ADMIN"), // Administrador - acesso total ao sistema
+	ROLE_MANAGER ("ROLE_MANAGER"), // Gerente - acesso a funcionalidades avançadas
+	ROLE_USER ("ROLE_USER"), // Usuário - acesso às funções básicas do sistema
+	NO_ACCESS ("NO_ACCESS"); // Sem acesso ao sistema
+	
+	private String descricao;
+	
+	private AccessLevel(String descricao) {
+this.descricao=descricao;
+}
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
-@Entity
-@Table(name = "accessLevel")
-public class AccessLevel implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private long id;
-	@Size(min = 1, max = 100, message = "Tamanho de caracteres excedido.")
-	   private String nome;
-	public AccessLevel() {
-		super();
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public synchronized String getDescricao() {
+		return descricao;
 	}
 
 }

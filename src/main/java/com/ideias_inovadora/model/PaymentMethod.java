@@ -1,12 +1,12 @@
 package com.ideias_inovadora.model;
 
-public enum MetodoPagamento {
+public enum PaymentMethod  { //MetodoPagamento
 	CARTÃO("CARTÃO"), DINHEIRO("DINHEIRO"),TRANSFERÊNCIA("TRANSFERÊNCIA");
  
 	
 	private String descricao;
 
-	MetodoPagamento(String descricao){
+	PaymentMethod (String descricao){
 		this.descricao=descricao;
 	}
 

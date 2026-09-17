@@ -1,12 +1,12 @@
 package com.ideias_inovadora.model;
 
-public enum CategoriaDespesa {
+public enum ExpenseCategory { //CategoriaDespesa
 	IMPOSTO("IMPOSTO"), SALARIO("SALARIO"),BONUS("BONUS"), COMPRA("COMPRA"), OUTROS("OUTROS");
  
 	
 	private String descricao;
 
-	CategoriaDespesa(String descricao){
+	ExpenseCategory (String descricao){
 		this.descricao=descricao;
 	}
 

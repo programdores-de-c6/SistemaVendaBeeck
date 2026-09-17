@@ -14,9 +14,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "despesa")
-public class Despesa implements Serializable {
-
+@Table(name = "expense ")
+public class Expense implements Serializable {
+//Despesa
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,17 +25,17 @@ public class Despesa implements Serializable {
 	@JoinColumn(name = "shop_fk")
 	private Shop shop;
 	@Enumerated(EnumType.STRING)
-	private CategoriaDespesa categoriadespes;
+	private ExpenseCategory  expenseCategory;
 	private String descricao;
 	private BigDecimal valor;
 	private LocalDate datadespesa;
 	private LocalDateTime dataCriacao;
 	private LocalDateTime dataAutolizacao;
 	@ManyToOne
-	@JoinColumn(name = "funcionario_fk")
-	private Funcionario funcionario;
+	@JoinColumn(name = "employee_fk")
+	private Employee employee;
 
-	public Despesa() {
+	public Expense() {
 		super();
 	}
 
@@ -57,12 +57,14 @@ public class Despesa implements Serializable {
 		this.shop = shop;
 	}
 
-	public CategoriaDespesa getCategoriadespes() {
-		return categoriadespes;
+	
+
+	public ExpenseCategory getExpenseCategory() {
+		return expenseCategory;
 	}
 
-	public void setCategoriadespes(CategoriaDespesa categoriadespes) {
-		this.categoriadespes = categoriadespes;
+	public void setExpenseCategory(ExpenseCategory expenseCategory) {
+		this.expenseCategory = expenseCategory;
 	}
 
 	public String getDescricao() {
@@ -105,12 +107,14 @@ public class Despesa implements Serializable {
 		this.dataAutolizacao = dataAutolizacao;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
+
+	
 
 }

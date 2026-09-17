@@ -14,8 +14,8 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 
 @Entity
-@Table(name = "intemProforma")
-public class IntemProforma implements Serializable {
+@Table(name = "proformaInvoiceItem") //IntemProforma
+public class ProformaInvoiceItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -25,16 +25,18 @@ public class IntemProforma implements Serializable {
 	@JoinColumn(name = "proforma_fk")
 	private ProForma proForma;
 	@ManyToOne
-	@JoinColumn(name = "produto_fk")
-	private Produto produto;
+	@JoinColumn(name = "product_fk")
+	private Product product;
 	@Min(1)
 	private int quantidade;
 	@DecimalMin("0.01")
 	private BigDecimal precoUnitario;
 	@DecimalMin("0.01")
 	private BigDecimal subTotal;
+	@DecimalMin("0.00")
+	private BigDecimal taxaImposto = BigDecimal.ZERO;
 
-	public IntemProforma() {
+	public ProformaInvoiceItem() {
 		super();
 	}
 
@@ -54,12 +56,12 @@ public class IntemProforma implements Serializable {
 		this.proForma = proForma;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getQuantidade() {
@@ -84,6 +86,14 @@ public class IntemProforma implements Serializable {
 
 	public void setSubTotal(BigDecimal subTotal) {
 		this.subTotal = subTotal;
+	}
+
+	public BigDecimal getTaxaImposto() {
+		return taxaImposto;
+	}
+
+	public void setTaxaImposto(BigDecimal taxaImposto) {
+		this.taxaImposto = taxaImposto;
 	}
 
 }

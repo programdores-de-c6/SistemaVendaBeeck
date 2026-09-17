@@ -13,8 +13,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "pais")
-public class Pais implements Serializable {
+@Table(name = "country ")//pais
+public class Country  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -29,12 +29,12 @@ public class Pais implements Serializable {
 	private LocalDateTime dataCriacao;
 	private LocalDateTime dataAtualizacao;
 	
-	public Pais() {
+	public Country () {
 		super();
 	}
 	
 	
-	public Pais(
+	public Country (
 			@NotBlank(message = "Verifica o nome da localidade ") @Size(min = 1, max = 100, message = "Tamanho de caracteres excedido.") String nome,
 			@Size(min = 1, max = 20, message = "Tamanho de caracteres excedido.") String sigla,
 			LocalDateTime dataCriacao) {

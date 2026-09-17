@@ -26,8 +26,8 @@ public class Series implements Serializable {
 	@JoinColumn(name = "shop_fk")
 	private Shop shop;
 	@ManyToOne
-	@JoinColumn(name = "funcionario_fk")
-	private Funcionario funcionario;
+	@JoinColumn(name = "employee_fk")
+	private Employee employee;
 	private LocalDateTime datacriacao;
 	private LocalDateTime dataAutorizacao;
 
@@ -77,6 +77,14 @@ public class Series implements Serializable {
 
 	
 
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 	public Shop getShop() {
 		return shop;
 	}
@@ -85,13 +93,7 @@ public class Series implements Serializable {
 		this.shop = shop;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
+	
 
 	public LocalDateTime getDatacriacao() {
 		return datacriacao;

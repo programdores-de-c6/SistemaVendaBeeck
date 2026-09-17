@@ -40,6 +40,7 @@ public class LocationController {
 	public ResponseEntity<ApiResponse> create(@Validated @RequestBody Location location) {
 		apiResponse.setMessage(locationService.create(location));
 		apiResponse.setStatus("Sucesso");
+		System.out.print(apiResponse);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
 	}
@@ -48,6 +49,7 @@ public class LocationController {
 	public ResponseEntity<ApiResponse> update(@Validated @RequestBody Location location) {
 		apiResponse.setMessage(locationService.update(location));
 		apiResponse.setStatus("Sucesso");
+	
 		return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
 
 	}

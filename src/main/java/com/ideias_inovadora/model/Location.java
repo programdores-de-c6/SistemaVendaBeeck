@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "localidade")
+@Table(name = "location")
 public class Location implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,11 +26,14 @@ public class Location implements Serializable {
 	@Column(unique = true, nullable = false)
 	@Size(min = 1, max = 100, message = "Tamanho de caracteres excedido.")
 	private String nome;
-	@Size(min = 1, max = 20, message = "Tamanho de caracteres excedido.")
+	@Size(min = 0, max = 20, message = "Tamanho de caracteres excedido.")
 	private String Sigla;
-	@ManyToOne
-	@JoinColumn(name = "distrito_fk")
-	private Distrito distrito;
+	@ManyToOne(optional = false)
+	@JoinColumn(
+	    name = "district_fk",
+	    nullable = false
+	)
+	private District district;
 	@Column(updatable = false)
 	private LocalDateTime datacriacao;
 	private LocalDateTime dataAtualizacao;
@@ -63,12 +66,12 @@ public class Location implements Serializable {
 		Sigla = sigla;
 	}
 
-	public Distrito getDistrito() {
-		return distrito;
+	public District getDistrict() {
+		return district;
 	}
 
-	public void setDistrito(Distrito distrito) {
-		this.distrito = distrito;
+	public void setDistrict(District district) {
+		this.district = district;
 	}
 
 	public LocalDateTime getDatacriacao() {

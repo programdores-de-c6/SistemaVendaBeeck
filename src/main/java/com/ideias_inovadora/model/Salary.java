@@ -13,16 +13,16 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "salario")
-public class Salario implements Serializable {
+@Table(name = "salary ")
+public class Salary  implements Serializable {//Salario
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
-	@JoinColumn(name = "funcionario_fk")
-	private Funcionario funcionario;
+	@JoinColumn(name = "employee_fk")
+	private Employee employee;
 	private BigDecimal descontoSegurancaSocial;
 	private BigDecimal descontoFalta;
 	private BigDecimal descoIrs;
@@ -31,7 +31,7 @@ public class Salario implements Serializable {
 	private BigDecimal bonus;
 	private LocalDate data;
 
-	public Salario() {
+	public Salary () {
 		super();
 	}
 
@@ -43,12 +43,12 @@ public class Salario implements Serializable {
 		this.id = id;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public BigDecimal getDescontoSegurancaSocial() {

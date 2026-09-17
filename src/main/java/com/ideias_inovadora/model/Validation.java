@@ -1,7 +1,7 @@
 package com.ideias_inovadora.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,69 +10,64 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "validacao")
-public class validacao implements Serializable {
+@Table(name = "validation")
+public class Validation implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private String codigo;
-	private boolean estado;
-	private String senhatemporaria;
-	private LocalDate dataespiracao;
-	private boolean usado;
-	
-	public validacao() {
-		super();
-	}
+    private static final long serialVersionUID = 1L;
 
-	public long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    private String codigo;
 
-	public String getCodigo() {
-		return codigo;
-	}
+    private String email;
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
+    private LocalDateTime dataespiracao;
 
-	public boolean isEstado() {
-		return estado;
-	}
+    private boolean usado;
 
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
+    public Validation() {
+        super();
+    }
 
-	public String getSenhatemporaria() {
-		return senhatemporaria;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setSenhatemporaria(String senhatemporaria) {
-		this.senhatemporaria = senhatemporaria;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public LocalDate getDataespiracao() {
-		return dataespiracao;
-	}
+    public String getCodigo() {
+        return codigo;
+    }
 
-	public void setDataespiracao(LocalDate dataespiracao) {
-		this.dataespiracao = dataespiracao;
-	}
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
 
-	public boolean isUsado() {
-		return usado;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setUsado(boolean usado) {
-		this.usado = usado;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public LocalDateTime getDataespiracao() {
+        return dataespiracao;
+    }
+
+    public void setDataespiracao(LocalDateTime dataespiracao) {
+        this.dataespiracao = dataespiracao;
+    }
+
+    public boolean isUsado() {
+        return usado;
+    }
+
+    public void setUsado(boolean usado) {
+        this.usado = usado;
+    }
 }

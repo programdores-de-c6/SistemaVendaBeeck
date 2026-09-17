@@ -15,8 +15,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.DecimalMin;
 
 @Entity
-@Table(name = "requisicao")
-public class Requisicao implements Serializable {
+@Table(name = "requisition ")
+public class Requisition  implements Serializable {//Requisicao
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -35,10 +35,10 @@ public class Requisicao implements Serializable {
 	private int duracao;
 	private LocalDate dataReceber;
 	@ManyToOne
-	@JoinColumn(name = "transacao_fk")
-	private Transacao transacao;
+	@JoinColumn(name = "transaction_fk")
+	private Transaction  transacao;
 
-	public Requisicao() {
+	public Requisition () {
 		super();
 	}
 
@@ -113,11 +113,13 @@ public class Requisicao implements Serializable {
 		this.dataReceber = dataReceber;
 	}
 
-	public Transacao getTransacao() {
+	
+
+	public synchronized Transaction getTransacao() {
 		return transacao;
 	}
 
-	public void setTransacao(Transacao transacao) {
+	public synchronized void setTransacao(Transaction transacao) {
 		this.transacao = transacao;
 	}
 

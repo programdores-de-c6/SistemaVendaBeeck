@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,25 +15,30 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "caixa")
-public class Caixa implements Serializable{
-
-
+@Table(name = "box")
+public class Box implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
-	@JoinColumn(name = "funcionario_fk")
-	private Funcionario funcionario;
-	private Funcionario funcionarioAbri;
-	private Funcionario funcionarioFech;
+	@JoinColumn(name = "employeeclosure_fk")
+	private Employee employeeClosure;
+	@ManyToOne
+	@JoinColumn(name = "employeeOpened_fk")
+	private Employee employeeOpened;
 	private BigDecimal valorInicial;
+	private BigDecimal valorDia;
 	private BigDecimal valorFinal;
+	@Enumerated(EnumType.STRING)
 	private StatusCaixa statusCaixa;
 	private LocalDateTime dataAbertura;
 	private LocalDateTime dataFecho;
-	public Caixa() {
+	@ManyToOne
+	@JoinColumn(name = "shop_fk", nullable = false)
+	private Shop shop;
+	
+	public Box() {
 		super();
 	}
 	public long getId() {
@@ -41,23 +48,18 @@ public class Caixa implements Serializable{
 		this.id = id;
 	}
 	
-	public Funcionario getFuncionario() {
-		return funcionario;
+	
+	public Employee getEmployeeClosure() {
+		return employeeClosure;
 	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setEmployeeClosure(Employee employeeClosure) {
+		this.employeeClosure = employeeClosure;
 	}
-	public Funcionario getFuncionarioAbri() {
-		return funcionarioAbri;
+	public Employee getEmployeeOpened() {
+		return employeeOpened;
 	}
-	public void setFuncionarioAbri(Funcionario funcionarioAbri) {
-		this.funcionarioAbri = funcionarioAbri;
-	}
-	public Funcionario getFuncionarioFech() {
-		return funcionarioFech;
-	}
-	public void setFuncionarioFech(Funcionario funcionarioFech) {
-		this.funcionarioFech = funcionarioFech;
+	public void setEmployeeOpened(Employee employeeOpened) {
+		this.employeeOpened = employeeOpened;
 	}
 	public BigDecimal getValorInicial() {
 		return valorInicial;
@@ -70,6 +72,13 @@ public class Caixa implements Serializable{
 	}
 	public void setValorFinal(BigDecimal valorFinal) {
 		this.valorFinal = valorFinal;
+	}
+	
+	public BigDecimal getValorDia() {
+		return valorDia;
+	}
+	public void setValorDia(BigDecimal valorDia) {
+		this.valorDia = valorDia;
 	}
 	public StatusCaixa getStatusCaixa() {
 		return statusCaixa;
@@ -88,6 +97,12 @@ public class Caixa implements Serializable{
 	}
 	public void setDataFecho(LocalDateTime dataFecho) {
 		this.dataFecho = dataFecho;
+	}
+	public Shop getShop() {
+		return shop;
+	}
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 	
 	

@@ -1,14 +1,16 @@
 package com.ideias_inovadora.repository;
 
 import java.util.List;
-import org.apache.commons.logging.Log;
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.ideias_inovadora.model.Pais;
 
-public interface PaisRepository extends JpaRepository<Pais, Long> {
+import com.ideias_inovadora.model.Country;
+
+public interface CountryRepository extends JpaRepository<Country, Long> {
 
 
-	List<Pais> findAll();
+	List<Country> findAll();
+	
+	
 	
 
 

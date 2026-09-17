@@ -6,26 +6,28 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "fornecedor")
-public class Fornecedor extends Pessoa {
+@Table(name = "supplier")
+public class Supplier extends Person {//Fornecedor
 	
 	private static final long serialVersionUID = 1L;
   
 	@ManyToOne
-	@JoinColumn(name = "pais_fk")
-	private Pais pais;
+	@JoinColumn(name = "country_fk")
+	private Country  country;
 
-	public Fornecedor() {
+	public Supplier() {
 		super();
 	}
 
-	public Pais getPais() {
-		return pais;
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setPais(Pais pais) {
-		this.pais = pais;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
+
+	
 
 	
 	

@@ -1,11 +1,11 @@
 package com.ideias_inovadora.model;
 
-public enum TipoMovimento {
-	ENTRADA("ENTRADA"), SAÍDA("SAÍDA");
+public enum MovementType   {//TipoMovimentoTipoMovimento
+	ENTRADA("ENTRADA"), SAÍDA("SAÍDA"), TRANSFERENCIA("TRANSFERENCIA"), AJUSTE("AJUSTE");
 
 	private String descricao;
 
-	TipoMovimento(String descricao) {
+	MovementType (String descricao) {
 		this.descricao = descricao;
 	}
 

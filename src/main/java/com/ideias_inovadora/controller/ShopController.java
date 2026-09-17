@@ -1,64 +1,94 @@
 package com.ideias_inovadora.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.ideias_inovadora.dto.ShopDTO;
-import com.ideias_inovadora.dto.ShopDTOs;
-import com.ideias_inovadora.model.Shop;
 import com.ideias_inovadora.service.ShopSevice;
 import com.ideias_inovadora.util.ApiResponse;
 
+
+/**
+ * CONTROLADOR DE UNIDADES (SHOP)
+ * Responsável por gerir a Gráfica, Livraria e Armazéns.
+ */
 @RestController
-@RequestMapping("api/sales-system/shop/")
+@RequestMapping("api/sales-system/shop") // Removida barra final redundante
 public class ShopController {
 
-	@Autowired
-	ShopSevice shopSevice;
-	@Autowired
-	ApiResponse apiResponse;
+    @Autowired
+    private ShopSevice shopSevice;
+    
+    @Autowired
+    private ApiResponse apiResponse;
 
-	@PostMapping(value = "create")
-	public ResponseEntity<ApiResponse> create(@Validated @RequestBody Shop shop) {
-		apiResponse.setMessage(shopSevice.create(shop));
-		apiResponse.setStatus("Sucesso");
+    /**
+     * Regista uma nova unidade (Apenas Admin Master).
+     */
+    @PostMapping(value = "/create")
+    public ResponseEntity<ApiResponse> create(
+            @RequestPart(value = "file", required = false) MultipartFile file, 
+            @RequestPart("shopDto") @Validated ShopDTO shopDto) throws Exception {
+        
+        shopDto.setFile(file);
+        apiResponse.setMessage(shopSevice.create(shopDto));
+        apiResponse.setStatus("Sucesso");
+        return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+    }
+    
+    
+    @PutMapping(value = "/update")
+    public ResponseEntity<ApiResponse> update(@Validated @RequestBody com.ideias_inovadora.model.Shop shop) {
+        apiResponse.setMessage(shopSevice.update(shop));
+        apiResponse.setStatus("Sucesso");
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    }
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
-	}
+    /**
+     * Lista todas as lojas para o Administrador Geral.
+     */
+    @GetMapping(value = "/list")
+    public ResponseEntity<List<ShopDTO>> list() throws Exception {
+        return ResponseEntity.ok(this.shopSevice.list());
+    }
 
-	@PutMapping(value = "update")
-	public ResponseEntity<ApiResponse> update(@Validated @RequestBody Shop shop) {
-		apiResponse.setMessage(shopSevice.update(shop));
-		apiResponse.setStatus("Sucesso");
-		return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
+    /**
+     * Detalhes de uma loja específica (útil para cabeçalhos de fatura).
+     */
+    @GetMapping(value = "/listid/{id}") 
+    public ResponseEntity<ShopDTO> findById(@PathVariable Long id){
+        return ResponseEntity.ok(this.shopSevice.listid(id)); 
+    }
 
-	}
+    /**
+     * Endpoint técnico para buscar o logótipo da loja no Login.
+     */
+    @PostMapping(value = "/fetch")
+    public ResponseEntity<ShopDTO> fetch(@RequestBody ShopDTO shopDTO) throws Exception {
+        return ResponseEntity.ok(this.shopSevice.enviarfile(shopDTO));
+    }
+  
+ 
+    
+   @PostMapping(value = "/upload-logo")
+   public ResponseEntity<ApiResponse> uploadLogo(
+           @RequestPart("id") String id, // Recebemos como String para evitar erro de parse
+           @RequestPart("file") MultipartFile file) throws Exception {
 
-	@GetMapping(value = "list")
-	public ResponseEntity<List<ShopDTO>> list() throws Exception {
-		return ResponseEntity.ok(this.shopSevice.list());
+       // Converte o ID para Long e monta o DTO para o serviço
+       ShopDTO dto = new ShopDTO();
+       dto.setId(Long.parseLong(id));
+       dto.setFile(file);
 
-	}
+       // Chama a lógica de negócio
+       apiResponse.setMessage(shopSevice.upload_logo(dto));
+       apiResponse.setStatus("Sucesso");
 
-	@GetMapping(value = "lists")
-	public ResponseEntity<List<ShopDTOs>> listCombox() throws Exception {
-		return ResponseEntity.ok(this.shopSevice.listCompobox());
-
-	}
-
-	@GetMapping(value = "search")
-	public ResponseEntity<List<ShopDTO>> search(@RequestParam(name = "nome") String nome) throws Exception {
-		return ResponseEntity.ok(this.shopSevice.search(nome));
-
-	}
+       return ResponseEntity.ok(apiResponse);
+   }
 }

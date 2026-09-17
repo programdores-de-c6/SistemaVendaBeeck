@@ -11,8 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
-@Table(name = "arquivoDespesa")
-public class ArquivosDespesa implements Serializable {
+@Table(name = "expenseFiles ")
+public class ExpenseFiles  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +24,8 @@ public class ArquivosDespesa implements Serializable {
 	private LocalDateTime data;
 	@ManyToOne
 	@JoinColumn(name = "despesa_fk")
-	private Despesa despesa;
-	public ArquivosDespesa() {
+	private Expense  expense;
+	public ExpenseFiles () {
 		super();
 	}
 	public long getId() {
@@ -64,11 +64,11 @@ public class ArquivosDespesa implements Serializable {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	public Despesa getDespesa() {
-		return despesa;
+	public Expense getExpense() {
+		return expense;
 	}
-	public void setDespesa(Despesa despesa) {
-		this.despesa = despesa;
+	public void setExpense(Expense expense) {
+		this.expense = expense;
 	}
 	
 	

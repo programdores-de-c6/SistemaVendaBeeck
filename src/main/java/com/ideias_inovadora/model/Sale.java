@@ -2,6 +2,8 @@ package com.ideias_inovadora.model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -10,23 +12,24 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "venda")
-public class Venda implements Serializable {
+@Table(name = "sale ")
+public class Sale  implements Serializable {//Venda
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@ManyToOne
-	@JoinColumn(name = "serie_fk")
-	private Series series;
 	private String numeroFactura;
 	private String nomeclienteInformal;
+	@ManyToOne
+	@JoinColumn(name="serie_fk")
+	private Series series;
 	private LocalDateTime datavenda;
 	@ManyToOne
-	@JoinColumn(name = "transacao_fk")
-	private Transacao transacao;
-	public Venda() {
+	@JoinColumn(name = "transaction_fk")
+	private Transaction  transaction;
+
+	public Sale () {
 		super();
 	}
 
@@ -37,17 +40,6 @@ public class Venda implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	
-
-	public Series getSerie() {
-		return series;
-	}
-
-	public void setSerie(Series series) {
-		this.series = series;
-	}
-
 
 	public String getNumeroFactura() {
 		return numeroFactura;
@@ -73,12 +65,22 @@ public class Venda implements Serializable {
 		this.datavenda = datavenda;
 	}
 
-	public Transacao getTransacao() {
-		return transacao;
+
+	public synchronized Transaction getTransaction() {
+		return transaction;
 	}
 
-	public void setTransacao(Transacao transacao) {
-		this.transacao = transacao;
+	public synchronized void setTransaction(Transaction transaction) {
+		this.transaction = transaction;
 	}
+
+	public Series getSeries() {
+		return series;
+	}
+
+	public void setSeries(Series series) {
+		this.series = series;
+	}
+
 
 }

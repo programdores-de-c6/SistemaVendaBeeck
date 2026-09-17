@@ -3,32 +3,26 @@ package com.ideias_inovadora.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "imposto")
-public class Imposto implements Serializable{
+@Table(name = "tax")
+public class Tax  implements Serializable{//Imposto
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
-	@ManyToOne
-	@JoinColumn(name = "shop_fk")
-    private Shop shop;
-	@Enumerated(EnumType.STRING)
-	private TipoImposto tipoImposto;
+	@Column(unique = true, nullable = false)
+	private String  imposto;
      private BigDecimal baseCalculo;
     private  BigDecimal valorCalculado;
-	public Imposto() {
+	public Tax () {
 		super();
 	}
 	public long getId() {
@@ -38,17 +32,11 @@ public class Imposto implements Serializable{
 		this.id = id;
 	}
 	
-	public Shop getShop() {
-		return shop;
+	public String getImposto() {
+		return imposto;
 	}
-	public void setShop(Shop shop) {
-		this.shop = shop;
-	}
-	public TipoImposto getTipoImposto() {
-		return tipoImposto;
-	}
-	public void setTipoImposto(TipoImposto tipoImposto) {
-		this.tipoImposto = tipoImposto;
+	public void setImposto(String imposto) {
+		this.imposto = imposto;
 	}
 	public BigDecimal getBaseCalculo() {
 		return baseCalculo;

@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.NotNull;
+
 
 public class LocationDTO implements Serializable{
 
@@ -15,6 +17,7 @@ public class LocationDTO implements Serializable{
 	private long id;
 	private String nome;
 	private String sigla;
+	@NotNull
 	private long distritoid;
 	private String nomedistrito;
 	@JsonFormat(pattern = "dd/MM/yyy HH:mm")

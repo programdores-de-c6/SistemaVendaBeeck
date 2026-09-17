@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,13 +32,20 @@ public class Shop implements Serializable {
 	private String email;
 	private String contacto;
 	private int caixaPostal;
+	@ManyToOne
+	@JoinColumn(name = "created_by_fk")
+	private Employee employee;
 	@Column(updatable = false)
 	private LocalDateTime datacriacao;
 	private LocalDateTime dataAtualizacao;
 	@ManyToOne
 	@JoinColumn(name = "localidade_fk")
 	private Location location;
-
+	@ManyToOne	
+	@JoinColumn(name = "file_fk")
+	private Files files;
+    @Enumerated(EnumType.STRING)
+    private ShopType shopType;
 	
 
 	public Shop() {
@@ -113,6 +122,30 @@ public class Shop implements Serializable {
 
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+
+	public synchronized Employee getEmployee() {
+		return employee;
+	}
+
+	public synchronized void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public synchronized Files getFiles() {
+		return files;
+	}
+
+	public synchronized void setFiles(Files files) {
+		this.files = files;
+	}
+
+	public ShopType getShopType() {
+		return shopType;
+	}
+
+	public void setShopType(ShopType shopType) {
+		this.shopType = shopType;
 	}
 
 	

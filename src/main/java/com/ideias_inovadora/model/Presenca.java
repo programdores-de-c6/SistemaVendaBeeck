@@ -19,11 +19,11 @@ public class Presenca implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
-	@JoinColumn(name = "funcionario_fk")
-	private Funcionario funcionario;
+	@JoinColumn(name = "employee_fk")
+	private Employee employee;
 	@ManyToOne
-	@JoinColumn(name = "funcSistema_fk")
-	private Funcionario funcSistema;
+	@JoinColumn(name = "employeesystem_fk")
+	private Employee employeeSystem;
 	@Enumerated(EnumType.STRING)
 	private StatusPresenca statusPresenca;
 	LocalDateTime data;
@@ -36,17 +36,18 @@ public class Presenca implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public Funcionario getFuncionario() {
-		return funcionario;
+	
+	public Employee getEmployee() {
+		return employee;
 	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
-	public Funcionario getFuncSistema() {
-		return funcSistema;
+	public Employee getEmployeeSystem() {
+		return employeeSystem;
 	}
-	public void setFuncSistema(Funcionario funcSistema) {
-		this.funcSistema = funcSistema;
+	public void setEmployeeSystem(Employee employeeSystem) {
+		this.employeeSystem = employeeSystem;
 	}
 	public StatusPresenca getStatusPresenca() {
 		return statusPresenca;

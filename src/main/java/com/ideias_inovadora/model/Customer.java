@@ -6,32 +6,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "cliente")
-public class Cliente extends Pessoa {
-
+@Table(name = "customer ")
+public class Customer  extends Person {
+//Cliente
 	private static final long serialVersionUID = 1L;
 
-	private String codigocliente;
 	@ManyToOne
 	@JoinColumn(name = "localidade_fk")
 	private Location location;
 	
-	public Cliente() {
+	public Customer() {
 		super();
 	}
 
-	public Cliente(String codigocliente) {
-		super();
-		this.codigocliente = codigocliente;
-	}
 
-	public String getCodigocliente() {
-		return codigocliente;
-	}
-
-	public void setCodigocliente(String codigocliente) {
-		this.codigocliente = codigocliente;
-	}
 
 	public Location getLocation() {
 		return location;

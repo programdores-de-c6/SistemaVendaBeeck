@@ -3,7 +3,11 @@ package com.ideias_inovadora.dto;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ideias_inovadora.model.Location;
+import com.ideias_inovadora.model.ShopType;
 
 
 
@@ -17,6 +21,8 @@ public class ShopDTO implements Serializable{
 	private String numeroContribuite;
 	private String email;
 	private String contacto;
+	private ShopType shopType;
+	private String shopTypes;
 	private int caixaPostal;
 	@JsonFormat(pattern = "dd/MM/yyy HH:mm")
 	private LocalDateTime datacriacao;
@@ -24,8 +30,9 @@ public class ShopDTO implements Serializable{
 	private LocalDateTime dataAtualizacao;
 	private String nomelocation;
 	private long idlocation;
-	
-	
+	private MultipartFile file;
+	Location location;
+	private String logoUrl;
 	
 	
 	public ShopDTO() {
@@ -76,6 +83,13 @@ public class ShopDTO implements Serializable{
 	public LocalDateTime getDataAtualizacao() {
 		return dataAtualizacao;
 	}
+	
+	public String getLogoUrl() {
+		return logoUrl;
+	}
+	public void setLogoUrl(String logoUrl) {
+		this.logoUrl = logoUrl;
+	}
 	public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
 		this.dataAtualizacao = dataAtualizacao;
 	}
@@ -91,5 +105,34 @@ public class ShopDTO implements Serializable{
 	public void setIdlocation(Long idlocation) {
 		this.idlocation = idlocation;
 	}
+	public synchronized MultipartFile getFile() {
+		return file;
+	}
+	public synchronized void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	public synchronized void setIdlocation(long idlocation) {
+		this.idlocation = idlocation;
+	}
+	public synchronized Location getLocation() {
+		return location;
+	}
+	public synchronized void setLocation(Location location) {
+		this.location = location;
+	}
+	public ShopType getShopType() {
+		return shopType;
+	}
+	public void setShopType(ShopType shopType) {
+		this.shopType = shopType;
+	}
+	public String getShopTypes() {
+		return shopTypes;
+	}
+	public void setShopTypes(String shopTypes) {
+		this.shopTypes = shopTypes;
+	}
+	
+
 
 }

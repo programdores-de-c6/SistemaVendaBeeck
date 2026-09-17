@@ -10,23 +10,27 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.validation.constraints.DecimalMin;
 
 @Entity
 @Table(name = "proForma")
-public class ProForma implements Serializable {
+public class ProForma implements Serializable {//ProForma
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
-	@JoinColumn(name = "cliente_fk")
-	private Cliente cliente;
+	@JoinColumn(name = "customer_fk")
+	private Customer  customer;
 	@ManyToOne
-	@JoinColumn(name = "funcionario_fk")
-	private Funcionario funcionario;
+	@JoinColumn(name = "employee_fk")
+	private Employee employee;
 	@ManyToOne
 	@JoinColumn(name = "shop_fk")
 	private Shop shop;
@@ -35,6 +39,10 @@ public class ProForma implements Serializable {
 	private String numeroproforma;
 	private String nomeclienteInformal;
 	private LocalDateTime dataproforma;
+	private String estado = "ABERTA";
+
+	@OneToMany(mappedBy = "proForma", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ProformaInvoiceItem> itens = new ArrayList<>();
 
 	public ProForma() {
 		super();
@@ -47,25 +55,22 @@ public class ProForma implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public Cliente getCliente() {
-		return cliente;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
-	
 
-	
 	public Shop getShop() {
 		return shop;
 	}
@@ -98,7 +103,24 @@ public class ProForma implements Serializable {
 		this.numeroproforma = numeroproforma;
 	}
 
+		public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public List<ProformaInvoiceItem> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ProformaInvoiceItem> itens) {
+		this.itens = itens;
+	}
+
 	public LocalDateTime getDataproforma() {
+
 		return dataproforma;
 	}
 

@@ -1,6 +1,7 @@
 package com.ideias_inovadora.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
@@ -12,7 +13,7 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
 
 @MappedSuperclass
-public abstract class Pessoa implements Serializable {
+public abstract class Person  implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -21,26 +22,50 @@ public abstract class Pessoa implements Serializable {
 	@NotBlank(message = "O campo de nome não pode ser Null")
 	@Column(nullable = false)
 	private String nome;
-	private String dataNascimento;
 	private String contactoPrincipal;
 	private String contactoSecudario;
-	@NotBlank(message = "O campo de nome não pode ser Null")
-	@Column(unique = true)
 	private String email;
-	@Column(updatable = false)
-	private String senha;
+
     @Enumerated(EnumType.STRING)
-	private Sexo sexo;
+	private Gender  gender;
 	@Column(unique = true)
 	private String numeroBi;
 	@Column(unique = true)
 	private String numeroContribuinte;
+	private LocalDate dataNacimento;
 	@Column(updatable = false)
 	private LocalDateTime datacriacao;
 	private LocalDateTime dataAtualizacao;
+	
 
-	public Pessoa() {
+	public Person() {
 		super();
+	}
+
+	public Person(long id, @NotBlank(message = "O campo de nome não pode ser Null") String nome,
+			String contactoPrincipal, String contactoSecudario, String email, Gender gender, String numeroBi,
+			String numeroContribuinte, LocalDate dataNacimento, LocalDateTime datacriacao,
+			LocalDateTime dataAtualizacao) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.contactoPrincipal = contactoPrincipal;
+		this.contactoSecudario = contactoSecudario;
+		this.email = email;
+		this.gender = gender;
+		this.numeroBi = numeroBi;
+		this.numeroContribuinte = numeroContribuinte;
+		this.dataNacimento = dataNacimento;
+		this.datacriacao = datacriacao;
+		this.dataAtualizacao = dataAtualizacao;
+	}
+
+	public LocalDate getDataNacimento() {
+		return dataNacimento;
+	}
+
+	public void setDataNacimento(LocalDate dataNacimento) {
+		this.dataNacimento = dataNacimento;
 	}
 
 	public String getNome() {
@@ -51,14 +76,7 @@ public abstract class Pessoa implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
+	
 	public String getContactoPrincipal() {
 		return contactoPrincipal;
 	}
@@ -82,21 +100,20 @@ public abstract class Pessoa implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getSenha() {
-		return senha;
+	public long getId() {
+		return id;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public Sexo getSexo() {
-		return sexo;
+	public Gender getGender() {
+		return gender;
 	}
 
-	public void setSexo(Sexo sexo) {
-		this.sexo = sexo;
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 
 	public String getNumeroBi() {

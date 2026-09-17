@@ -16,8 +16,8 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "movimentacaoStock")
-public class MovimentacaoStock implements Serializable{
+@Table(name = "stockMovement ")
+public class StockMovement  implements Serializable{ //MovimentacaoStock
 
 	
 	private static final long serialVersionUID = 1L;
@@ -30,15 +30,19 @@ public class MovimentacaoStock implements Serializable{
 	@Min(1)
 	private int quantidade;
     @Enumerated(EnumType.STRING)
-	private TipoMovimento tipoMovimento;
+	private MovementType  movementType;
 	@ManyToOne
 	@JoinColumn(name = "produto_fk")
-	private Produto produto;
+	private Product product;
+	@ManyToOne
+	@JoinColumn(name = "shop_fk")
+	private Shop shop;
+	
 	private LocalDateTime data;
 	@ManyToOne
-	@JoinColumn(name = "funcionario_fk")
-	private Funcionario funcionario;
-	public MovimentacaoStock() {
+	@JoinColumn(name = "employee_fk")
+	private Employee employee;
+	public StockMovement () {
 		super();
 	}
 	public long getId() {
@@ -59,23 +63,37 @@ public class MovimentacaoStock implements Serializable{
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	public TipoMovimento getTipoMovimento() {
-		return tipoMovimento;
+	
+	
+	public synchronized MovementType getMovementType() {
+		return movementType;
 	}
-	public void setTipoMovimento(TipoMovimento tipoMovimento) {
-		this.tipoMovimento = tipoMovimento;
+	public synchronized void setMovementType(MovementType movementType) {
+		this.movementType = movementType;
 	}
-	public Produto getProduto() {
-		return produto;
+	public Product getProduct() {
+		return product;
 	}
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	public LocalDateTime getData() {
 		return data;
 	}
 	public void setData(LocalDateTime data) {
 		this.data = data;
+	}
+	public Shop getShop() {
+		return shop;
+	}
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 	
 	

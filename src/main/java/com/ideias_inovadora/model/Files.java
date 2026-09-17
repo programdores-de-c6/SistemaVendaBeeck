@@ -7,12 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "arquivoFoto")
-public class ArquivosFotos implements Serializable {
+public class Files  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,10 +21,8 @@ public class ArquivosFotos implements Serializable {
 	private String caminho;
 	private int size;
 	private LocalDateTime data;
-	@ManyToOne
-	@JoinColumn(name = "produto_fk")
-	private Produto produto;
-	public ArquivosFotos() {
+	
+	public Files() {
 		super();
 	}
 	public long getId() {
@@ -65,12 +61,8 @@ public class ArquivosFotos implements Serializable {
 	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
-	public Produto getProduto() {
-		return produto;
-	}
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
+
+	
 	
 	
 }

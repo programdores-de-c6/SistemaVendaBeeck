@@ -14,19 +14,19 @@ import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 
 @Entity
-@Table(name = "intemTrasacao")
-public class IntemVenda implements Serializable {
+@Table(name = "saleItem")
+public class SaleItem implements Serializable {// IntemVenda
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@ManyToOne
-	@JoinColumn(name = "transacao_fk")
-	private Transacao transacao;
+    @JoinColumn(name = "sale_fk") 
+    private Sale sale;
 	@ManyToOne
-	@JoinColumn(name = "produto_fk")
-	private Produto produto;
+	@JoinColumn(name = "product_fk")
+	private Product product;
 	@Min(1)
 	private int quantidade;
 	@DecimalMin("0.01")
@@ -34,7 +34,7 @@ public class IntemVenda implements Serializable {
 	@DecimalMin("0.01")
 	private BigDecimal subTotal;
 
-	public IntemVenda() {
+	public SaleItem() {
 		super();
 	}
 
@@ -46,20 +46,22 @@ public class IntemVenda implements Serializable {
 		this.id = id;
 	}
 
-	public Transacao getTransacao() {
-		return transacao;
+
+
+	public Sale getSale() {
+		return sale;
 	}
 
-	public void setTransacao(Transacao transacao) {
-		this.transacao = transacao;
+	public void setSale(Sale sale) {
+		this.sale = sale;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getQuantidade() {

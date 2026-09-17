@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ideias_inovadora.repository.DistritoRepository;
+import com.ideias_inovadora.repository.DistrictRepository;
 
 @RestController
-@RequestMapping("api/sistemavenda/distritos")  // Removida a barra no final
+@RequestMapping("api/sales-system/distritos")  // Removida a barra no final
 public class DistritoController {  // Nome corrigido
 
     @Autowired
-    private DistritoRepository distritoRepository;
+    private DistrictRepository districtRepository;
 
     @GetMapping("/listar")  // Melhor prática: Usar "/" no @GetMapping
     public ResponseEntity<?> listar() {
-        return new ResponseEntity<>(distritoRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(districtRepository.findAll(), HttpStatus.OK);
     }
 }

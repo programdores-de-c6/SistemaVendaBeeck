@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+upload/
+hs_err_pid*.log
+src/main/java/com/ideias_inovadora.zip
